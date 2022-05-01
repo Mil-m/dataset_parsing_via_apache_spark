@@ -2,12 +2,10 @@ import ftplib
 import os
 
 
-def ftp_upload(ftp_host='ftp.ebi.ac.uk', ftp_dir='/pub/databases/opentargets/platform/21.11/output/etl/json/',
-               outp_dir=os.path.join(os.path.abspath(""), 'data'),
-               key_dirs=['diseases', 'targets', 'evidence/sourceId=eva/'],
-               re_upload=False, silent=True):
+def ftp_upload(ftp_host: str, ftp_dir: str, outp_dir: str, key_dirs: set,
+               re_upload: bool = False, silent: bool = True):
 
-    def upload(ftp, key_dir, re_upload, silent):
+    def upload(ftp: str, key_dir: str, re_upload: bool, silent: bool):
         ftp_key_dir = os.path.join(ftp_dir, key_dir)
         print(f"Current FTP key directory is: {ftp_key_dir}")
         ftp.cwd(ftp_key_dir)
